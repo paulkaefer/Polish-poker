@@ -8,7 +8,7 @@ pointValues <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 0)
 # repeat to get the full deck. Add two values for the Jokers
 pointValues <- c(rep(pointValues, 4), -3, -3)
 
-nTrials <- 100
+nTrials <- 100000
 scores <- c(0)
 
 for (i in 1:nTrials) {
@@ -56,3 +56,6 @@ for (i in 1:nTrials) {
   scores[i] <- score
   
 }
+
+print(paste0("average score on first draw, with ", nTrials, " trials: ", mean(scores)))
+hist(scores, breaks=30)
