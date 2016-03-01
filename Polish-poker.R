@@ -25,13 +25,6 @@ for (i in 1:nTrials) {
   for (iPair in 1:3) {
     
     firstCardIndex <- sample(nCards, 1)
-    if (firstCardIndex > nCards) {
-      
-      print("WARNING!!")
-      print(paste0("firstCardIndex: ", firstCardIndex))
-      print(paste0("    nCards: ", nCards))
-      
-    }
     
     firstCardThisPair <- cardsAvailable[firstCardIndex]
     firstCardPoints <- pointsAvailable[firstCardIndex]
@@ -42,14 +35,6 @@ for (i in 1:nTrials) {
     pointsAvailable <- pointsAvailable[-firstCardIndex]
     
     secondCardIndex <- sample(nCards, 1)
-    
-    if (secondCardIndex > nCards) {
-      
-      print("WARNING!!")
-      print(paste0("secondCardIndex: ", secondCardIndex))
-      print(paste0("    nCards: ", nCards))
-      
-    }
     
     secondCardThisPair <- cardsAvailable[secondCardIndex]
     secondCardPoints <- pointsAvailable[secondCardIndex]
@@ -62,12 +47,16 @@ for (i in 1:nTrials) {
     if (is.na(firstCardPoints)) {
       
       print("firstCardPoints is NA!")
+      print(paste0("firstCardIndex: ", firstCardIndex))
+      print(paste0("    nCards: ", nCards))
       
     }
     
     if (is.na(secondCardPoints)) {
       
       print("secondCardPoints is NA!")
+      print(paste0("secondCardIndex: ", secondCardIndex))
+      print(paste0("    nCards: ", nCards))
       
     }
     
