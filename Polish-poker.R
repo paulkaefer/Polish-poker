@@ -4,7 +4,7 @@ cards <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)
 cards <- c(rep(cards, 4), 14, 14)
 
 # this depends on how you play. there seem to be several different scoring systems.
-pointValues <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 0)
+pointValues <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 0)
 # repeat to get the full deck. Add two values for the Jokers
 pointValues <- c(rep(pointValues, 4), -3, -3)
 
@@ -43,22 +43,6 @@ for (i in 1:nTrials) {
     nCards <- nCards - 1
     cardsAvailable <- cardsAvailable[-secondCardIndex]
     pointsAvailable <- pointsAvailable[-secondCardIndex]
-   
-    if (is.na(firstCardPoints)) {
-      
-      print("firstCardPoints is NA!")
-      print(paste0("firstCardIndex: ", firstCardIndex))
-      print(paste0("    nCards: ", nCards))
-      
-    }
-    
-    if (is.na(secondCardPoints)) {
-      
-      print("secondCardPoints is NA!")
-      print(paste0("secondCardIndex: ", secondCardIndex))
-      print(paste0("    nCards: ", nCards))
-      
-    }
     
     # if the cards do NOT match, add their values to your total points
     if (firstCardThisPair != secondCardThisPair) {
