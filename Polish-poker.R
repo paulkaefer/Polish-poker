@@ -8,14 +8,14 @@ pointValues <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 0)
 # repeat to get the full deck. Add two values for the Jokers
 pointValues <- c(rep(pointValues, 4), -3, -3)
 
-nTrials <- 10000
+nTrials <- 100
 scores <- c(0)
 
 for (i in 1:nTrials) {
   
   # initially, we have a full deck:
   cardsAvailable <- cards
-  pointsAvailable <- points
+  pointsAvailable <- pointValues
   
   nCards <- length(cardsAvailable)
   
@@ -24,25 +24,52 @@ for (i in 1:nTrials) {
   
   for (iPair in 1:3) {
     
-    firstCardIndex <- sample(1:nCards, 1)
+    firstCardIndex <- sample(nCards, 1)
+    if (firstCardIndex > nCards) {
+      
+      print("WARNING!!")
+      print(paste0("firstCardIndex: ", firstCardIndex))
+      print(paste0("    nCards: ", nCards))
+      
+    }
     
     firstCardThisPair <- cardsAvailable[firstCardIndex]
     firstCardPoints <- pointsAvailable[firstCardIndex]
     
     # remove the first card from the set
+    nCards <- nCards - 1
     cardsAvailable <- cardsAvailable[-firstCardIndex]
     pointsAvailable <- pointsAvailable[-firstCardIndex]
-    nCards <- nCards - 1
     
-    secondCardIndex <- sample(1:nCards, 1)
+    secondCardIndex <- sample(nCards, 1)
+    
+    if (secondCardIndex > nCards) {
+      
+      print("WARNING!!")
+      print(paste0("secondCardIndex: ", secondCardIndex))
+      print(paste0("    nCards: ", nCards))
+      
+    }
     
     secondCardThisPair <- cardsAvailable[secondCardIndex]
     secondCardPoints <- pointsAvailable[secondCardIndex]
     
     # remove the second card from the set
+    nCards <- nCards - 1
     cardsAvailable <- cardsAvailable[-secondCardIndex]
     pointsAvailable <- pointsAvailable[-secondCardIndex]
-    nCards <- nCards - 1
+   
+    if (is.na(firstCardPoints)) {
+      
+      print("firstCardPoints is NA!")
+      
+    }
+    
+    if (is.na(secondCardPoints)) {
+      
+      print("secondCardPoints is NA!")
+      
+    }
     
     # if the cards do NOT match, add their values to your total points
     if (firstCardThisPair != secondCardThisPair) {
